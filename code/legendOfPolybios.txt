@@ -1,0 +1,770 @@
+-- legendOfPolybiosSection
+
+LITERALR1 CleanBGLayer l
+CALL 1 31 0
+
+LITERALR1 LoadEveryRoomSprite l
+CALL 1 31 0
+
+-- infiniteLoop
+JUMPI infiniteLoop l
+
+-- CleanBGLayer
+
+//Storing hotizontal position mask on register 2
+MOV 0 1
+LITERALR1 127
+MOV 1 2
+
+//Storing vertical position mask on register 3
+MOV 0 1
+LITERALR1 32640
+MOV 1 3
+
+//Storing the position of the eraser in 5
+LITERALR1 blackSquare l
+MOV 1 5
+
+//Initializing do while index on register 4
+MOV 0 4
+
+-- CleanScreenDoWhile
+
+//Storing the horizontal position on reg 6
+AND 2 4 6
+
+//Storing the vertical position on reg 7
+AND 3 4 7
+SRL 7 7 7 0
+
+//Paste the black square to clean the screen
+LITERALR1 1
+SSTC 1
+LITERALR1 VideoLayer l
+LS 5 1 3 6 7
+LITERALR1 0
+SSTC 1
+
+//Increase the index
+ADDI 4 4
+
+LITERALR1 22592
+LESS 4 1 0
+//if it is not less than that return
+RETURN
+//if it is less
+JUMPI CleanScreenDoWhile l
+
+-- LoadEveryRoomSprite
+
+//Storing room array start to reg 2
+LITERALR1 Room1Start l
+MOV 1 2
+
+//Storing hotizontal position mask on reg 5
+MOV 0 1
+LITERALR1 255
+MOV 1 5
+
+//Storing vertical position mask on reg 6
+MOV 0 1
+LITERALR1 65280
+MOV 1 6
+
+-- RoomWhileStart
+
+//Load the sprite address to reg 3
+LOAD 2 3
+
+ADDI 2 1
+
+//Load the screen position to reg 4
+LOAD 2 4
+
+ADDI 2 1
+
+//If the address is zero then exit, else continue
+MOV 0 1
+GREATER 3 0 0
+RETURN
+
+//Getting the horizontal position from screen position, and storing it on reg 7
+AND 4 5 7
+
+//Getting the vertical position from screen position, and storing it on reg 8
+AND 4 6 8
+SRL 8 8 8 0
+
+LITERALR1 VideoLayer l
+LS 3 1 3 7 8
+
+JUMPI RoomWhileStart l
+
+
+-- Room1Start
+
+//Y = 0
+ADDRESS wallTopSprite l
+storeScreenPosition 0 0
+
+ADDRESS wallTopSprite l
+storeScreenPosition 4 0
+
+ADDRESS wallTopSprite l
+storeScreenPosition 8 0
+
+ADDRESS wallSpriteR4 l
+storeScreenPosition 12 0
+
+ADDRESS wallCornerSpriteR3 l
+storeScreenPosition 16 0
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 20 0
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 24 0
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 28 0
+
+ADDRESS wallCornerSpriteR4 l
+storeScreenPosition 32 0
+
+ADDRESS wallCornerSpriteR2 l
+storeScreenPosition 36 0
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 40 0
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 44 0
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 48 0
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 52 0
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 56 0
+
+ADDRESS wallCornerSpriteR1 l
+storeScreenPosition 60 0
+
+//Y = 16
+ADDRESS wallTopSprite l
+storeScreenPosition 0 16
+
+ADDRESS wallTopSprite l
+storeScreenPosition 4 16
+
+ADDRESS wallTopSprite l
+storeScreenPosition 8 16
+
+ADDRESS wallSpriteR4 l
+storeScreenPosition 12 16
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 16 16
+
+ADDRESS wallTopSprite l
+storeScreenPosition 20 16
+
+ADDRESS wallTopSprite l
+storeScreenPosition 24 16
+
+ADDRESS wallTopSprite l
+storeScreenPosition 28 16
+
+ADDRESS wallSpriteR4 l
+storeScreenPosition 32 16
+
+ADDRESS floorSprite l
+storeScreenPosition 36 16
+
+ADDRESS floorSprite l
+storeScreenPosition 40 16
+
+ADDRESS floorSprite l
+storeScreenPosition 44 16
+
+ADDRESS floorSprite l
+storeScreenPosition 48 16
+
+ADDRESS floorSprite l
+storeScreenPosition 52 16
+
+ADDRESS floorSprite l
+storeScreenPosition 56 16
+
+ADDRESS wallCornerSpriteR3 l
+storeScreenPosition 60 16
+
+//Y = 32
+ADDRESS wallTopSprite l
+storeScreenPosition 0 32
+
+ADDRESS wallTopSprite l
+storeScreenPosition 4 32
+
+ADDRESS wallTopSprite l
+storeScreenPosition 8 32
+
+ADDRESS wallSpriteR4 l
+storeScreenPosition 12 32
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 16 32
+
+ADDRESS wallTopSprite l
+storeScreenPosition 20 32
+
+ADDRESS wallTopSprite l
+storeScreenPosition 24 32
+
+ADDRESS wallTopSprite l
+storeScreenPosition 28 32
+
+ADDRESS wallSpriteR4 l
+storeScreenPosition 32 32
+
+ADDRESS floorSprite l
+storeScreenPosition 36 32
+
+ADDRESS floorSprite l
+storeScreenPosition 40 32
+
+ADDRESS wallCornerSpriteR3 l
+storeScreenPosition 44 32
+
+ADDRESS wallCornerSpriteR4 l
+storeScreenPosition 48 32
+
+ADDRESS floorSprite l
+storeScreenPosition 52 32
+
+ADDRESS floorSprite l
+storeScreenPosition 56 32
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 60 32
+
+//Y = 48
+
+ADDRESS wallTopSprite l
+storeScreenPosition 0 48
+
+ADDRESS wallTopSprite l
+storeScreenPosition 4 48
+
+ADDRESS wallTopSprite l
+storeScreenPosition 8 48
+
+ADDRESS wallSpriteR4 l
+storeScreenPosition 12 48
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 16 48
+
+ADDRESS wallTopSprite l
+storeScreenPosition 20 48
+
+ADDRESS wallTopSprite l
+storeScreenPosition 24 48
+
+ADDRESS wallCornerInvertedSpriteR4 l
+storeScreenPosition 28 48
+
+ADDRESS wallCornerSpriteR1 l
+storeScreenPosition 32 48
+
+ADDRESS floorSprite l
+storeScreenPosition 36 48
+
+ADDRESS wallCornerSpriteR3 l
+storeScreenPosition 40 48
+
+ADDRESS wallCornerInvertedSpriteR2 l
+storeScreenPosition 44 48
+
+ADDRESS wallCornerInvertedSpriteR3 l
+storeScreenPosition 48 48
+
+ADDRESS wallCornerSpriteR4 l
+storeScreenPosition 52 48
+
+ADDRESS floorSprite l
+storeScreenPosition 56 48
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 60 48
+
+//Y = 64
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 0 64
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 4 64
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 8 64
+
+ADDRESS wallCornerSpriteR1 l
+storeScreenPosition 12 64
+
+ADDRESS wallCornerSpriteR2 l
+storeScreenPosition 16 64
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 20 64
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 24 64
+
+ADDRESS wallCornerSpriteR1 l
+storeScreenPosition 28 64
+
+ADDRESS floorSprite l
+storeScreenPosition 32 64
+
+ADDRESS floorSprite l
+storeScreenPosition 36 64
+
+ADDRESS wallCornerSpriteR2 l
+storeScreenPosition 40 64
+
+ADDRESS wallCornerInvertedSpriteR1 l
+storeScreenPosition 44 64
+
+ADDRESS wallCornerInvertedSpriteR4 l
+storeScreenPosition 48 64
+
+ADDRESS wallCornerSpriteR1 l
+storeScreenPosition 52 64
+
+ADDRESS floorSprite l
+storeScreenPosition 56 64
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 60 64
+
+//Y = 80
+
+ADDRESS floorSprite l
+storeScreenPosition 0 80
+
+ADDRESS floorSprite l
+storeScreenPosition 4 80
+
+ADDRESS floorSprite l
+storeScreenPosition 8 80
+
+ADDRESS floorSprite l
+storeScreenPosition 12 80
+
+ADDRESS floorSprite l
+storeScreenPosition 16 80
+
+ADDRESS floorSprite l
+storeScreenPosition 20 80
+
+ADDRESS floorSprite l
+storeScreenPosition 24 80
+
+ADDRESS floorSprite l
+storeScreenPosition 28 80
+
+ADDRESS floorSprite l
+storeScreenPosition 32 80
+
+ADDRESS floorSprite l
+storeScreenPosition 36 80
+
+ADDRESS floorSprite l
+storeScreenPosition 40 80
+
+ADDRESS wallCornerSpriteR2 l
+storeScreenPosition 44 80
+
+ADDRESS wallCornerSpriteR1 l
+storeScreenPosition 48 80
+
+ADDRESS floorSprite l
+storeScreenPosition 52 80
+
+ADDRESS floorSprite l
+storeScreenPosition 56 80
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 60 80
+
+//Y = 96
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 0 96
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 4 96
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 8 96
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 12 96
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 16 96
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 20 96
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 24 96
+
+ADDRESS wallCornerSpriteR4 l
+storeScreenPosition 28 96
+
+ADDRESS floorSprite l
+storeScreenPosition 32 96
+
+ADDRESS floorSprite l
+storeScreenPosition 36 96
+
+ADDRESS floorSprite l
+storeScreenPosition 40 96
+
+ADDRESS floorSprite l
+storeScreenPosition 44 96
+
+ADDRESS floorSprite l
+storeScreenPosition 48 96
+
+ADDRESS floorSprite l
+storeScreenPosition 52 96
+
+ADDRESS floorSprite l
+storeScreenPosition 56 96
+
+ADDRESS wallCornerSpriteR2 l
+storeScreenPosition 60 96
+
+//Y = 112
+
+ADDRESS wallTopSprite l
+storeScreenPosition 0 112
+
+ADDRESS wallCornerInvertedSpriteR4 l
+storeScreenPosition 4 112
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 8 112
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 12 112
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 16 112
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 20 112
+
+ADDRESS wallSpriteR1 l
+storeScreenPosition 24 112
+
+ADDRESS wallCornerSpriteR1 l
+storeScreenPosition 28 112
+
+ADDRESS blackSquare l
+storeScreenPosition 32 112
+
+ADDRESS blackSquare l
+storeScreenPosition 36 112
+
+ADDRESS blackSquare l
+storeScreenPosition 40 112
+
+ADDRESS floorSprite l
+storeScreenPosition 44 112
+
+ADDRESS floorSprite l
+storeScreenPosition 48 112
+
+ADDRESS wallCornerSpriteR3 l
+storeScreenPosition 52 112
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 56 112
+
+ADDRESS wallCornerSpriteR3 l
+storeScreenPosition 60 112
+
+//Y = 128
+
+ADDRESS wallTopSprite l
+storeScreenPosition 0 128
+
+ADDRESS wallSpriteR4 l
+storeScreenPosition 4 128
+
+ADDRESS floorSprite l
+storeScreenPosition 8 128
+
+ADDRESS floorSprite l
+storeScreenPosition 12 128
+
+ADDRESS floorSprite l
+storeScreenPosition 16 128
+
+ADDRESS floorSprite l
+storeScreenPosition 20 128
+
+//Big chest
+ADDRESS bigChestSprite1 l
+storeScreenPosition 8 118
+
+ADDRESS bigChestSprite2 l
+storeScreenPosition 12 118
+//Big chest end
+
+ADDRESS woodenBridgeASpriteR1 l
+storeScreenPosition 24 128
+
+ADDRESS woodenBridgeASpriteR1 l
+storeScreenPosition 28 128
+
+ADDRESS woodenBridgeASpriteR1 l
+storeScreenPosition 32 128
+
+ADDRESS floorSprite l
+storeScreenPosition 36 128
+
+ADDRESS floorSprite l
+storeScreenPosition 40 128
+
+ADDRESS floorSprite l
+storeScreenPosition 44 128
+
+ADDRESS floorSprite l
+storeScreenPosition 48 128
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 52 128
+
+ADDRESS wallTopSprite l
+storeScreenPosition 56 128
+
+ADDRESS wallTopSprite l
+storeScreenPosition 60 128
+
+//Y = 144
+
+ADDRESS wallTopSprite l
+storeScreenPosition 0 144
+
+ADDRESS wallSpriteR4 l
+storeScreenPosition 4 144
+
+ADDRESS floorSprite l
+storeScreenPosition 8 144
+
+ADDRESS floorSprite l
+storeScreenPosition 12 144
+
+ADDRESS floorSprite l
+storeScreenPosition 16 144
+
+ADDRESS floorSprite l
+storeScreenPosition 20 144
+
+ADDRESS woodenBridgeMiddleSpriteR1 l
+storeScreenPosition 24 144
+
+ADDRESS woodenBridgeMiddleSpriteR1 l
+storeScreenPosition 28 144
+
+ADDRESS woodenBridgeMiddleSpriteR1 l
+storeScreenPosition 32 144
+
+ADDRESS floorSprite l
+storeScreenPosition 36 144
+
+ADDRESS floorSprite l
+storeScreenPosition 40 144
+
+ADDRESS floorSprite l
+storeScreenPosition 44 144
+
+ADDRESS floorSprite l
+storeScreenPosition 48 144
+
+ADDRESS wallSpriteR2 l
+storeScreenPosition 52 144
+
+ADDRESS wallTopSprite l
+storeScreenPosition 56 144
+
+ADDRESS wallTopSprite l
+storeScreenPosition 60 144
+
+//Y = 160
+
+ADDRESS wallTopSprite l
+storeScreenPosition 0 160
+
+ADDRESS wallCornerInvertedSpriteR3 l
+storeScreenPosition 4 160
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 8 160
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 12 160
+
+ADDRESS wallCornerSpriteR4 l
+storeScreenPosition 16 160
+
+ADDRESS floorSprite l
+storeScreenPosition 20 160
+
+ADDRESS woodenBridgeBSpriteR1 l
+storeScreenPosition 24 160
+
+ADDRESS woodenBridgeBSpriteR1 l
+storeScreenPosition 28 160
+
+ADDRESS woodenBridgeBSpriteR1 l
+storeScreenPosition 32 160
+
+ADDRESS floorSprite l
+storeScreenPosition 36 160
+
+ADDRESS floorSprite l
+storeScreenPosition 40 160
+
+ADDRESS wallCornerSpriteR3 l
+storeScreenPosition 44 160
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 48 160
+
+ADDRESS wallCornerInvertedSpriteR2 l
+storeScreenPosition 52 160
+
+ADDRESS wallTopSprite l
+storeScreenPosition 56 160
+
+ADDRESS wallTopSprite l
+storeScreenPosition 60 160
+
+//Y = 176
+
+ADDRESS wallTopSprite l
+storeScreenPosition 0 176
+
+ADDRESS wallTopSprite l
+storeScreenPosition 4 176
+
+ADDRESS wallTopSprite l
+storeScreenPosition 8 176
+
+ADDRESS wallTopSprite l
+storeScreenPosition 12 176
+
+ADDRESS wallCornerInvertedSpriteR3 l
+storeScreenPosition 16 176
+
+ADDRESS wallCornerSpriteR4 l
+storeScreenPosition 20 176
+
+ADDRESS blackSquare l
+storeScreenPosition 24 176
+
+ADDRESS blackSquare l
+storeScreenPosition 28 176
+
+ADDRESS blackSquare l
+storeScreenPosition 32 176
+
+ADDRESS wallCornerSpriteR3 l
+storeScreenPosition 36 176
+
+ADDRESS wallSpriteR3 l
+storeScreenPosition 40 176
+
+ADDRESS wallCornerInvertedSpriteR2 l
+storeScreenPosition 44 176
+
+ADDRESS wallTopSprite l
+storeScreenPosition 48 176
+
+ADDRESS wallTopSprite l
+storeScreenPosition 52 176
+
+ADDRESS wallTopSprite l
+storeScreenPosition 56 176
+
+ADDRESS wallTopSprite l
+storeScreenPosition 60 176
+
+DB 0 0 0 0
+
+-- blackSquare
+fillSpace 64 0 0 0 0
+
+-- floorSprite
+SPRITE ./Assets/floor/1.png 16x16
+
+-- wallSpriteR1
+SPRITE ./Assets/wall/1.png 16x16
+-- wallSpriteR2
+SPRITE ./Assets/wall/2.png 16x16
+-- wallSpriteR3
+SPRITE ./Assets/wall/3.png 16x16
+-- wallSpriteR4
+SPRITE ./Assets/wall/4.png 16x16
+
+-- wallCornerSpriteR1
+SPRITE ./Assets/wallCorner/1.png 16x16
+-- wallCornerSpriteR2
+SPRITE ./Assets/wallCorner/2.png 16x16
+-- wallCornerSpriteR3
+SPRITE ./Assets/wallCorner/3.png 16x16
+-- wallCornerSpriteR4
+SPRITE ./Assets/wallCorner/4.png 16x16
+
+-- wallCornerInvertedSpriteR1
+SPRITE ./Assets/wallCornerInverted/1.png 16x16
+-- wallCornerInvertedSpriteR2
+SPRITE ./Assets/wallCornerInverted/2.png 16x16
+-- wallCornerInvertedSpriteR3
+SPRITE ./Assets/wallCornerInverted/3.png 16x16
+-- wallCornerInvertedSpriteR4
+SPRITE ./Assets/wallCornerInverted/4.png 16x16
+
+-- wallTopSprite
+SPRITE ./Assets/wallTop/1.png 16x16
+
+-- woodenBridgeASpriteR1
+SPRITE ./Assets/woodenBridgeA/1.png 16x16
+-- woodenBridgeASpriteR2
+SPRITE ./Assets/woodenBridgeA/2.png 16x16
+
+-- woodenBridgeBSpriteR1
+SPRITE ./Assets/woodenBridgeB/1.png 16x16
+-- woodenBridgeBSpriteR2
+SPRITE ./Assets/woodenBridgeB/2.png 16x16
+
+-- woodenBridgeMiddleSpriteR1
+SPRITE ./Assets/woodenBridgeMiddle/1.png 16x16
+-- woodenBridgeMiddleSpriteR2
+SPRITE ./Assets/woodenBridgeMiddle/2.png 16x16
+
+-- vesselSprite
+SPRITE ./Assets/vessel/1.png 16x16
+
+-- bigChestSprite1
+SPRITE ./Assets/bigChest/1.png 16x16
+-- bigChestSprite2
+SPRITE ./Assets/bigChest/2.png 16x16

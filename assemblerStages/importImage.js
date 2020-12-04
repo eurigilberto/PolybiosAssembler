@@ -43,8 +43,8 @@ function transformImageImports(lines) {
                 ];
             }
         } else if (lineSections[0] == "SPRITE_ANIM_SECTION") {
-            console.log("Sprite anim section called");
-            console.log("Line: ", line);
+            //console.log("Sprite anim section called");
+            //console.log("Line: ", line);
             /* Params
                 1 - relative path of folder containing the image
                 2 - size array

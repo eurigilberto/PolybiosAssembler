@@ -6,6 +6,7 @@ const { transformLabels } = require("./assemblerStages/transformLabels.js");
 const { transformInstructions } = require("./assemblerStages/transformInstructions.js");
 const { createCodeBuffer } = require("./assemblerStages/createCodeBuffer.js");
 const { compilerCommands } = require("./assemblerStages/compilerCommands.js");
+const { importCode } = require("./assemblerStages/importCode.js");
 const readline = require("readline");
 
 const rl = readline.createInterface({
@@ -37,9 +38,9 @@ fs.readdir(directoryPath, function (err, files) {
 
         const lines = loadedFile.split("\r\n");
 
-        const commentsRemoved = removeComments(lines);
+        const importedCodeFiles = importCode(lines);
+        const commentsRemoved = removeComments(importedCodeFiles);
         const transformedCompilerCommands = compilerCommands(commentsRemoved);
-        //console.log(transformedCompilerCommands)
         const imagesImported = transformImageImports(transformedCompilerCommands);
         const labelsTransformed = transformLabels(imagesImported);
         const instructionsTransformed = transformInstructions(labelsTransformed);

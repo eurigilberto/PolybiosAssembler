@@ -136,5 +136,8 @@ module.exports = {
     },
     SSTC: {//Set Sprite transparency color
         hexCode: '0x2F', structure: ["d 5"]
+    },
+    ADDRESS: {
+        hexCode: '0x00', structure: ["d 24"], label: true
     }
 }

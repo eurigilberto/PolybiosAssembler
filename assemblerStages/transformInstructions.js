@@ -38,7 +38,9 @@ function transformInstructions(lines) {
             validLines.push(`DB ${getByte(4, data)} ${getByte(3, data)} ${getByte(2, data)} ${getByte(1, data)}`);
 
         } else {
+            console.log("Previous Line: ", lines[i - 1])
             throw new Error(`Invalid line found on transformation stage | line : ${line}`);
+
         }
     }
 

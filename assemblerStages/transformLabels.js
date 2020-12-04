@@ -10,6 +10,12 @@ function transformLabels(lines){
         const lineSections = line.split(" ");
         
         if(lineSections[0] == "--"){
+            if(labelMap[lineSections[1]]){
+                throw new Error(`Duplicated lables
+Label: ${lineSections[1]} already exists
+Prev Line: ${lines[i - 1]}
+Next Line: ${lines[i + 1]}`)
+            }
             labelMap[lineSections[1]] = labelessLines.length;
         }else{
             labelessLines.push(line);

@@ -1,6 +1,19 @@
 const image = require("../utils/image.js");
 const { getSizeArray } = require("../utils/image.js");
 
+function storeScreenPosition(params){
+    const [x, y] = [...params];
+
+    if(x > 128){
+        throw new Error(`X position overflows the allocated space | position: ${x}`);
+    }
+    if(y >= 256){
+        throw new Error(`Y position overflows the allocated space | position: ${y}`);
+    }
+
+    return [`DB 0 0 ${y} ${x}`];
+}
+
 function fillSpace(params) {
     let createdLines = [];
     const fillAmmount = parseInt(params[0]);
@@ -216,7 +229,8 @@ SPRITE_SECTION ${imagePath} ${size} ${columnNumber} ${rowNumber}`);
 const commands = {
     "fillSpace": fillSpace,
     "placeImageOverMultipleSprites": placeImageOverMultipleSprites,
-    "placeSpriteAnimation": placeSpriteAnimation
+    "placeSpriteAnimation": placeSpriteAnimation,
+    "storeScreenPosition" : storeScreenPosition
 }
 
 function compilerCommands(lines) {
